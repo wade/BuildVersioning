@@ -1,0 +1,37 @@
+﻿@model BuildVersioningManager.Models.ProjectModels.PrepareToDeleteProjectModel
+@{
+	var project = @Model.Project;
+	var description = string.IsNullOrWhiteSpace(project.Description) ? "{empty}" : project.Description;
+	var projectConfigs = project.ProjectConfigs;
+    ViewBag.Title = string.Format("Delete Project: {0}", project.Name);
+}
+<div class="row">
+	<div class="col-md-10">
+		<h2>Delete Project</h2>
+		<p class="lead">Are you sure you want to delete this project and all of its project configs?</p>
+		<p>NOTE: Any related version hisotry will remain unaffected and will not be deleted.</p>
+		<hr/>
+		@using (Html.BeginForm("DeleteProject", "Project", new { name = project.Name }, FormMethod.Post))
+		{
+		<dl class="dl-horizontal">
+			<dt>Project Id</dt>
+			<dd>@project.Id</dd>
+
+			<dt>Name:</dt>
+			<dd>@project.Name</dd>
+
+			<dt>Description:</dt>
+			<dd>@description</dd>
+
+			<dt>Project Config Count:</dt>
+			<dd>@projectConfigs.Count</dd>
+
+			<dt></dt>
+			<dd>
+				<input class="btn btn-primary btn-sm" type="submit" value="Delete">
+				<a class="btn btn-default btn-sm" href="@Url.RouteUrl("ViewProject", new {name = project.Name})">Cancel</a>
+			</dd>
+		</dl>
+		}
+	</div>
+</div>

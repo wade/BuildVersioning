@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Add Project";
+}
+<div class="row">
+	<div class="col-md-10">
+		<h2>Add Project</h2>
+		<hr/>
+		@using (Html.BeginForm("AddProject", "Project", "POST"))
+		{
+		<dl class="dl-horizontal">
+			<dt>Name:</dt>
+			<dd>@Html.TextBox("Name", string.Empty, new { maxlength = 100, size = 100 })</dd>
+
+			<dt>Description:</dt>
+			<dd>@Html.TextArea("Description", string.Empty, new {cols = 100, maxlength = 400, rows = 4})</dd>
+
+			<dt></dt>
+			<dd>
+				<input class="btn btn-primary btn-sm" type="submit" value="Save">
+				<a class="btn btn-default btn-sm" href="@Url.RouteUrl("ListProjects")">Cancel</a>
+			</dd>
+		</dl>
+		}
+	</div>
+</div>

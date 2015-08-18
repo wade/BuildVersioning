@@ -1,0 +1,63 @@
+﻿@model BuildVersioningManager.Models.ProjectModels.ProjectModel
+@{
+	var project = @Model.Project;
+	var description = string.IsNullOrWhiteSpace(project.Description) ? "{empty}" : project.Description;
+	var projectConfigs = project.ProjectConfigs;
+    ViewBag.Title = string.Format("{0} Project", project.Name);
+}
+<div class="row">
+	<div class="col-md-10">
+		<h2>Project</h2>
+		<hr/>
+		<dl class="dl-horizontal">
+			<dt>Project Id</dt>
+			<dd>@project.Id</dd>
+
+			<dt>Name:</dt>
+			<dd>@project.Name</dd>
+
+			<dt>Description:</dt>
+			<dd>@description</dd>
+
+			<dt>Last Build Number:</dt>
+			<dd>@project.BuildNumber</dd>
+
+			<dt>Build Number Date:</dt>
+			<dd>@project.DateBuildNumberUpdated</dd>
+
+			<dt>Project Configs:</dt>
+			<dd>
+				(@projectConfigs.Count)
+				<br/>
+				@if (@projectConfigs.Count < 1)
+				{
+					<p>This project does not have any project configs.</p>
+				}
+				else
+				{
+					<ul class="list-unstyled">
+						@foreach (var projectConfig in projectConfigs)
+						{
+							<li><a href="@Url.RouteUrl("ViewProjectConfig", new {projectName = project.Name, name = projectConfig.Name})">@projectConfig.Name</a></li>
+						}
+					</ul>
+				}
+			</dd>
+
+			<dt></dt>
+			<dd>
+				<a class="btn btn-primary btn-sm" href="@Url.RouteUrl("EditProject", new { name = project.Name })">Edit This Project</a>
+			</dd>
+
+			<dt></dt>
+			<dd>
+				<a class="btn btn-primary btn-sm" href="@Url.RouteUrl("AddProjectConfig", new { projectName = project.Name })">Add New Project Config</a>
+			</dd>
+
+			<dt></dt>
+			<dd>
+				<a class="btn btn-default btn-sm" href="@Url.RouteUrl("DeleteProject", new { name = project.Name })">Delete This Project</a>
+			</dd>
+		</dl>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model BuildVersioningManager.Models.ProjectConfigModels.ProjectConfigsModel
+@{
+	var project = Model.Project;
+    ViewBag.Title = string.Format("{0} Project Configs", project.Name);
+}
+<div class="row">
+	<div class="col-md-8">
+		<h2>Project Configs for <a href="@Url.RouteUrl("ViewProject", new { name = project.Name })">@project.Name</a></h2>
+		<ul class="list-unstyled" style="margin-left: 2em;">
+		@foreach (var projectConfig in Model.ProjectConfigs)
+		{
+			<li class="lead"><a href="@Url.RouteUrl("ViewProjectConfig", new { name = projectConfig.Name })">@projectConfig.Name</a></li>
+		}
+		</ul>
+	</div>
+</div>

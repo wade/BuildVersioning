@@ -1,0 +1,33 @@
+﻿@model BuildVersioningManager.Models.ProjectModels.EditProjectModel
+@{
+    ViewBag.Title = "Edit Project";
+}
+<div class="row">
+	<div class="col-md-10">
+		<h2>Edit Project</h2>
+		<hr/>
+		@using (Html.BeginForm("EditProject", "Project", new { name = @Model.Name }, FormMethod.Post))
+		{
+		<dl class="dl-horizontal">
+			<dt>Project Id</dt>
+			<dd>@Model.Id</dd>
+
+			<dt>Name:</dt>
+			<dd>@Html.TextBoxFor(m => m.Name, new {maxlength = 100, size = 100})</dd>
+
+			<dt>Description:</dt>
+			<dd>@Html.TextAreaFor(m => m.Description, new {cols = 100, maxlength = 400, rows = 4})</dd>
+
+			<dt>Build Number:</dt>
+			<dd>@Html.TextBoxFor(m => m.BuildNumber, new {maxlength = 10, size = 10})</dd>
+
+			<dt></dt>
+			<dd>
+				<input class="btn btn-primary btn-sm" type="submit" value="Save">
+				<a class="btn btn-default btn-sm" href="@Url.RouteUrl("ViewProject", new {name = Model.Name})">Cancel</a>
+			</dd>
+		</dl>
+		@Html.HiddenFor(m => m.Id);
+		}
+	</div>
+</div>

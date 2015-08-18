@@ -1,0 +1,3 @@
+﻿Add-Migration InitialCreate -ConnectionStringName BuildVersions -ProjectName BuildVersioning.Data.Providers.EFProvider -StartUpProjectName BuildVersioning.Data.Providers.EFProvider -Verbose
+
+Update-Database -ConnectionStringName BuildVersions -ProjectName BuildVersioning.Data.Providers.EFProvider -StartUpProjectName BuildVersioning.Data.Providers.EFProvider

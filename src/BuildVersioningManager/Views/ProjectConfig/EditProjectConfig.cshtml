@@ -1,0 +1,84 @@
+﻿@model BuildVersioningManager.Models.ProjectConfigModels.EditProjectConfigModel
+@{
+	ViewBag.Title = "Edit ProjectConfig";
+}
+<div class="row">
+	<div class="col-md-10">
+		<h2>Add ProjectConfig to Project: @Model.ParentProjectName</h2>
+		<hr />
+		@using (Html.BeginForm("EditProjectConfig", "ProjectConfig", new { projectName = Model.ParentProjectName, name = Model.OriginalName }, FormMethod.Post))
+		{
+			<dl class="dl-horizontal">
+				<dt>ProjectConfig Id:</dt>
+				<dd>@Model.Id</dd>
+
+				<dt>Name:</dt>
+				<dd>@Html.TextBoxFor(m => m.Name, new {maxlength = 100, size = 100})</dd>
+
+				<dt>Description:</dt>
+				<dd>@Html.TextAreaFor(m => m.Description, new {cols = 100, maxlength = 400, rows = 4})</dd>
+
+				<dt>Release Type:</dt>
+				<dd>
+					@Html.EnumDropDownListFor(m => m.ReleaseType)
+				</dd>
+
+				<dt>Build Number Position:</dt>
+				<dd>
+					@Html.EnumDropDownListFor(m => m.BuildNumberPosition)
+					<br/><br/>
+				</dd>
+
+				<dt>File Version Part 1:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.GeneratedVersionPart1, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt>File Version Part 2:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.GeneratedVersionPart2, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt>File Version Part 3:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.GeneratedVersionPart3, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt>File Version Part 4:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.GeneratedVersionPart4, new {maxlength = 10, size = 10})
+					<br/><br/>
+				</dd>
+
+				<dt>Product Version Part 1:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.ProductVersionPart1, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt>Product Version Part 2:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.ProductVersionPart2, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt>Product Version Part 3:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.ProductVersionPart3, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt>Product Version Part 4:</dt>
+				<dd>
+					@Html.TextBoxFor(m => m.ProductVersionPart4, new {maxlength = 10, size = 10})
+				</dd>
+
+				<dt></dt>
+				<dd>
+					<input class="btn btn-primary btn-sm" type="submit" value="Save">
+					<a class="btn btn-default btn-sm" href="@Url.RouteUrl("ViewProjectConfig", new { projectName = Model.ParentProjectName, name = Model.OriginalName })">Cancel</a>
+				</dd>
+			</dl>
+			@Html.Hidden("ParentProjectId", Model.ParentProjectId)
+			@Html.Hidden("ParentProjectName", Model.ParentProjectName)
+			@Html.HiddenFor(m => m.Id)
+		}
+	</div>
+</div>

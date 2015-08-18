@@ -1,0 +1,18 @@
+﻿@model BuildVersioningManager.Models.ProjectModels.ProjectsModel
+@{
+    ViewBag.Title = "ListProjects";
+}
+<div class="row">
+	<div class="col-md-8">
+		<h2>Projects</h2>
+		<p><a class="btn btn-primary btn-sm" href="@Url.RouteUrl("AddProject")">Add New Project &raquo;</a></p>
+		<hr/>
+		<h3>All Projects:</h3>
+		@foreach (var project in Model.Projects)
+		{
+			<div class="col-md-3 lead">
+				<a href="@Url.RouteUrl("ViewProject", new { name = project.Name })">@project.Name</a>
+			</div>
+		}
+	</div>
+</div>

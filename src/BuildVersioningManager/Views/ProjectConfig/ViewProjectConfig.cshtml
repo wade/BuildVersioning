@@ -1,0 +1,89 @@
+﻿@model BuildVersioningManager.Models.ProjectConfigModels.ProjectConfigModel
+@{
+	const string generatedBuildNumberToken = "{Generated Build Number}";
+	var projectConfig = @Model.ProjectConfig;
+	var project = projectConfig.Project;
+	var description = string.IsNullOrWhiteSpace(projectConfig.Description) ? "{empty}" : projectConfig.Description;
+    ViewBag.Title = string.Format("{0} ProjectConfig", projectConfig.Name);
+}
+<div class="row">
+	<div class="col-md-10">
+		<h2>Project Config</h2>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>Project Config Id</dt>
+			<dd>@projectConfig.Id</dd>
+
+			<dt>Name:</dt>
+			<dd>@projectConfig.Name</dd>
+
+			<dt>Description:</dt>
+			<dd>@description<br /><br /></dd>
+
+			<dt>Parent Project Id</dt>
+			<dd>@project.Id</dd>
+
+			<dt>Parent Project Name:</dt>
+			<dd><a href="@Url.RouteUrl("ViewProject", new { name = project.Name })">@project.Name</a><br /><br /></dd>
+
+			<dt>Release Type:</dt>
+			<dd>@projectConfig.ReleaseTypeString</dd>
+
+			<dt>Build Number Position:</dt>
+			<dd>@projectConfig.GeneratedBuildNumberPosition<br /><br /></dd>
+
+			<dt>File Version Part 1:</dt>
+			<dd>@projectConfig.GeneratedVersionPart1</dd>
+
+			<dt>File Version Part 2:</dt>
+			<dd>@projectConfig.GeneratedVersionPart2</dd>
+
+			<dt>File Version Part 3:</dt>
+			<dd>
+				@if (projectConfig.GeneratedBuildNumberPosition == 3)
+				{
+					@generatedBuildNumberToken
+				}
+				else
+				{
+					@projectConfig.GeneratedVersionPart3
+				}
+			</dd>
+
+			<dt>File Version Part 4:</dt>
+			<dd>
+				@if (projectConfig.GeneratedBuildNumberPosition == 4)
+				{
+					@generatedBuildNumberToken
+				}
+				else
+				{
+					@projectConfig.GeneratedVersionPart4
+				}
+				<br /><br />
+			</dd>
+
+			<dt>Product Version Part 1:</dt>
+			<dd>@projectConfig.ProductVersionPart1</dd>
+
+			<dt>Product Version Part 2:</dt>
+			<dd>@projectConfig.ProductVersionPart2</dd>
+
+			<dt>Product Version Part 3:</dt>
+			<dd>@projectConfig.ProductVersionPart3</dd>
+
+			<dt>Product Version Part 4:</dt>
+			<dd>@projectConfig.ProductVersionPart4</dd>
+
+			<dt></dt>
+			<dd>
+				<a class="btn btn-primary btn-sm" href="@Url.RouteUrl("EditProjectConfig", new { projectName = @projectConfig.Project.Name, name = @projectConfig.Name })">Edit This Project Config</a>
+			</dd>
+
+			<dt></dt>
+			<dd>
+				<a class="btn btn-default btn-sm" href="@Url.RouteUrl("DeleteProjectConfig", new { projectName = @projectConfig.Project.Name, name = @projectConfig.Name })">Delete This Project Config</a>
+			</dd>
+		</dl>
+	</div>
+</div>

@@ -1,0 +1,4 @@
+The Team Foundation assemblies used by this project have been sourced from the following directory:
+C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\ReferenceAssemblies\v2.0
+	Microsoft.TeamFoundation.Build.Client.dll
+	Microsoft.TeamFoundation.Build.Workflow.dll

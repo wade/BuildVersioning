@@ -1,0 +1,43 @@
+﻿@model BuildVersioningManager.Models.HomeModels.IndexModel
+@{
+	var recentActivities = Model.RecentActivities;
+	var hasRecentActivities = (null != recentActivities && recentActivities.Count > 0);
+    ViewBag.Title = "Home";
+}
+<div class="row">
+	<div class="col-md-2">
+		<h2>Manage</h2>
+		<p><a class="btn btn-block btn-primary" href="@Url.RouteUrl("ListProjects")">Manage All Projects &raquo;</a></p>
+		@*<p><a class="btn btn-block btn-info" href="#">View Version History &raquo;</a></p>*@
+	</div>
+	<div class="col-md-8">
+		<h2>Recent Activity</h2>
+		@if (hasRecentActivities)
+		{
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Date</th>
+				<th>Project</th>
+				<th>Project Config</th>
+				<th>Version</th>
+			</tr>
+			</thead>
+			@foreach (var item in recentActivities)
+			{
+				<tr>
+					<td>@item.Date</td>
+					<td><a href="@Url.RouteUrl("ViewProject", new {name = item.ProjectName})">@item.ProjectName</a></td>
+					<td><a href="@Url.RouteUrl("ViewProjectConfig", new {projectName = item.ProjectName, name = item.ProjectConfigName})">@item.ProjectConfigName</a></td>
+					<td>@item.Version</td>
+				</tr>
+			}
+		</table>
+		}
+		else
+		{
+		<hr />
+		<p>There is no activity to display.</p>
+		}
+	</div>
+</div>
