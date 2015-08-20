@@ -38,6 +38,7 @@
     <x:Property Name="Metadata" Type="mtbw:ProcessParameterMetadataCollection" />
     <x:Property Name="SupportedReasons" Type="mtbc1:BuildReason" />
     <x:Property Name="BuildProcessVersion" Type="x:String" />
+    <x:Property Name="BuildVersioningSqlConnectionString" Type="InArgument(x:String)" />
   </x:Members>
   <this:Process.ProjectsToBuild>
     <InArgument x:TypeArguments="s:String[]" />
@@ -99,6 +100,7 @@
       <mtbw:ProcessParameterMetadata BrowsableWhen="Always" Description="Specify the tags used to select the build agent." DisplayName="Tags filter" Editor="Microsoft.TeamFoundation.Build.Controls.TagsEditor, Microsoft.TeamFoundation.Build.Controls" ParameterName="AgentSettings.Tags" />
       <mtbw:ProcessParameterMetadata BrowsableWhen="Always" Category="#400 Advanced" Description="Set this to true to create a work item when the build fails." DisplayName="Create work item on failure" ParameterName="CreateWorkItem" />
       <mtbw:ProcessParameterMetadata BrowsableWhen="Always" Category="#400 Advanced" Description="Set this to true to update the associated work items by setting the Fixed In Build field to the build number of this build." DisplayName="Update work items with build number" ParameterName="UpdateAssociatedWorkItems" />
+      <mtbw:ProcessParameterMetadata Category="#600 Build Versioning" Description="The SQL Server connection string for the database used by Build Versioning. The database is usually named BuildVersions." DisplayName="Build Versioning SQL Connection String" ParameterName="BuildVersioningSqlConnectionString" Required="True" />
     </mtbw:ProcessParameterMetadataCollection>
   </this:Process.Metadata>
   <mva:VisualBasic.Settings>
@@ -168,7 +170,7 @@
       <Variable x:TypeArguments="mtbc1:IBuildDetail" Name="BuildDetail" />
     </Sequence.Variables>
     <mtbwa:GetBuildDetail DisplayName="Get the BuildDetail" sap2010:WorkflowViewState.IdRef="GetBuildDetail_1" Result="[BuildDetail]" />
-    <bta:GenerateAndApplyVersionActivity LockTimeoutSeconds="{x:Null}" DatabaseConnectionString="server=(local);database=BuildVersions;user id=sa;password=P@ssw0rd123" DisplayName="Generate and apply version" sap2010:WorkflowViewState.IdRef="GenerateAndApplyVersion_1" ProjectConfigName="TestProjectConfig" ProjectName="TestProject" Result="[VersionDetail]" ShouldSetBuildNumber="True" ShouldSetDropLocation="True" />
+    <bta:GenerateAndApplyVersionActivity LockTimeoutSeconds="{x:Null}" DatabaseConnectionString="[BuildVersioningSqlConnectionString]" DisplayName="Generate and apply version" sap2010:WorkflowViewState.IdRef="GenerateAndApplyVersion_1" ProjectConfigName="TestProjectConfig" ProjectName="TestProject" Result="[VersionDetail]" ShouldSetBuildNumber="True" ShouldSetDropLocation="True" />
     <mtbwa:AgentScope DataToIgnore="" DisplayName="Run on agent" sap2010:WorkflowViewState.IdRef="AgentScope_1" MaxExecutionTime="[AgentSettings.GetValue(Of TimeSpan)(&quot;MaxExecutionTime&quot;, new System.TimeSpan(0,0,0))]" MaxWaitTime="[AgentSettings.GetValue(Of TimeSpan)(&quot;MaxWaitTime&quot;, new System.TimeSpan(4,0,0))]" ReservationSpec="[AgentSettings.CreateAgentReservationSpec()]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
       <mtbwa:AgentScope.Variables>
         <Variable x:TypeArguments="x:String" Name="SourceDir" />
@@ -273,18 +275,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,497" />
-      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1055" />
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,807" />
+      <sap2010:ViewStateData Id="AgentScope_1" sap:VirtualizedContainerService.HintSize="440,1365" />
       <sap2010:ViewStateData Id="CheckInGatedChanges_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="InvokeForReason_1" sap:VirtualizedContainerService.HintSize="440,146" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="462,1489">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="462,1799">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1569" />
+      <sap2010:ViewStateData Id="TfsBuild.Process_1" sap:VirtualizedContainerService.HintSize="502,1879" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

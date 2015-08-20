@@ -4,16 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersioningBuildTemplate", "VersioningBuildTemplate\VersioningBuildTemplate.csproj", "{233939CA-2B2E-449B-A785-90B1F541C75E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CBA21718-B8E0-49FE-8EF0-6C3F17F0665A} = {CBA21718-B8E0-49FE-8EF0-6C3F17F0665A}
-		{B295FF3F-292F-4A4D-A0F8-A5B303FE40EE} = {B295FF3F-292F-4A4D-A0F8-A5B303FE40EE}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildVersioning.TeamFoundation.Activities.v12", "BuildVersioning.TeamFoundation.Activities.v12\BuildVersioning.TeamFoundation.Activities.v12.csproj", "{CBA21718-B8E0-49FE-8EF0-6C3F17F0665A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B295FF3F-292F-4A4D-A0F8-A5B303FE40EE} = {B295FF3F-292F-4A4D-A0F8-A5B303FE40EE}
-		{58E77287-F6C8-49D5-A0CF-D59FCB36D3BC} = {58E77287-F6C8-49D5-A0CF-D59FCB36D3BC}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{ADB389B3-F46D-4B6E-BBA2-7D1C2B33699F}"
 	ProjectSection(SolutionItems) = preProject
@@ -41,6 +33,44 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildVersioning.Commands.Tests", "BuildVersioning.Commands.Tests\BuildVersioning.Commands.Tests.csproj", "{9755DA00-7BF9-4108-ADCC-81010BDA22AE}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://supernova:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = VersioningBuildTemplate\\VersioningBuildTemplate.csproj
+		SccProjectTopLevelParentUniqueName0 = Build.sln
+		SccProjectName0 = VersioningBuildTemplate
+		SccLocalPath0 = VersioningBuildTemplate
+		SccProjectUniqueName1 = BuildVersioning.Core\\BuildVersioning.Core.csproj
+		SccProjectTopLevelParentUniqueName1 = Build.sln
+		SccProjectName1 = BuildVersioning.Core
+		SccLocalPath1 = BuildVersioning.Core
+		SccProjectUniqueName2 = BuildVersioning.Data.Providers.EFProvider\\BuildVersioning.Data.Providers.EFProvider.csproj
+		SccProjectTopLevelParentUniqueName2 = Build.sln
+		SccProjectName2 = BuildVersioning.Data.Providers.EFProvider
+		SccLocalPath2 = BuildVersioning.Data.Providers.EFProvider
+		SccProjectUniqueName3 = BuildVersioning.Commands\\BuildVersioning.Commands.csproj
+		SccProjectTopLevelParentUniqueName3 = Build.sln
+		SccProjectName3 = BuildVersioning.Commands
+		SccLocalPath3 = BuildVersioning.Commands
+		SccProjectUniqueName4 = BuildVersioning.Commands.Tests\\BuildVersioning.Commands.Tests.csproj
+		SccProjectTopLevelParentUniqueName4 = Build.sln
+		SccProjectName4 = BuildVersioning.Commands.Tests
+		SccLocalPath4 = BuildVersioning.Commands.Tests
+		SccProjectUniqueName5 = BuildVersioning.TeamFoundation.Activities.v12\\BuildVersioning.TeamFoundation.Activities.v12.csproj
+		SccProjectTopLevelParentUniqueName5 = Build.sln
+		SccProjectName5 = BuildVersioning.TeamFoundation.Activities.v12
+		SccLocalPath5 = BuildVersioning.TeamFoundation.Activities.v12
+		SccProjectUniqueName6 = BuildVersioningManager.Tests\\BuildVersioningManager.Tests.csproj
+		SccProjectTopLevelParentUniqueName6 = Build.sln
+		SccProjectName6 = BuildVersioningManager.Tests
+		SccLocalPath6 = BuildVersioningManager.Tests
+		SccProjectUniqueName7 = BuildVersioningManager\\BuildVersioningManager.csproj
+		SccProjectTopLevelParentUniqueName7 = Build.sln
+		SccProjectName7 = BuildVersioningManager
+		SccLocalPath7 = BuildVersioningManager
+		SccLocalPath8 = .
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
